@@ -1,6 +1,6 @@
 {
     "Post": {
-      "title": { "string": {} },
+      "title": {  "loremWords": { "minLength": 5, "maxLength": 20 } },
       "body": { "loremParagraphs": {  "minLength": 200, "maxLength": 500 } },
       "comments": {
         "hasMany": "Comment"
@@ -14,8 +14,8 @@
       "isPublished": { "boolean": {} } 
     },
     "Author": {
-        "firstName": { "string": {} },
-        "lastName": { "string": {} },
+        "firstName": { "regexp": "[A-Z][a-z]{5,10}" },
+        "lastName": { "regexp": "[A-Z][a-z]{5,10}" },
         "avatarUrl": {
             "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}"
         },
@@ -23,7 +23,7 @@
             "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
           },
         "email": {
-            "regexp": "#[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
+            "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
           },
         "posts": {
             "hasMany": "Post"
@@ -33,8 +33,8 @@
         }
     },
     "Comment": {
-      "body": { "string": {} },
-      "post": {
+    "body": { "loremParagraphs": {  "minLength": 200, "maxLength": 500 } },
+    "post": {
         "belongsTo": "Post"
       },
       "author": {
